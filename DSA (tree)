@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class tree{
+    public:
+        int data;
+        tree* left;
+        tree* right;
+        tree(int val){
+            this->data=val;
+            this->left=NULL;
+            this->right=NULL;
+        }
+};
+
+int IN(tree* root){
+    if(root == NULL) return 0;
+    if(root->left == NULL && root->right == NULL) return 0;
+    
+    return 1 + IN(root->left) + IN(root->right);
+}
+
+int LN(tree* root){
+    if(root == NULL) return 0;
+    if(root->left == NULL && root->right == NULL) return 1;
+    
+    return LN(root->left) + LN(root->right);
+}
+
+int TN(tree* root){
+    if(root == NULL) return 0;
+    if(root->left == NULL && root->right == NULL) return 1;
+    
+    return 1 + TN(root->left) + TN(root->right);
+}
+
+int height(tree* root){
+    if(root == NULL) return 0;
+   
+    return 1 + max(height(root->left), height(root->right));
+}
+
+int main() {
+	tree* root = new tree(40);
+	root->left = new tree(30);
+	root->right = new tree(50);
+	root->left->left = new tree(10);
+	root->left->right = new tree(20);
+	root->right->left = new tree(60);
+	root->right->right = new tree(70);
+	root->right->left->left = new tree(80);
+	
+	cout << "Internal Node : " << IN(root) << endl;
+	
+	cout << "Leaf Node : " << LN(root) << endl;
+	
+	cout << "Total Node : " << TN(root) << endl;
+	
+	cout << "Height of tree : " << height(root) << endl;
+}
