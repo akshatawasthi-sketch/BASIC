@@ -40,6 +40,27 @@ int height(tree* root){
     return 1 + max(height(root->left), height(root->right));
 }
 
+void preorder(tree* root){
+    if(root == NULL) return;
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+void inorder(tree* root){
+    if(root == NULL) return;
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
+void postorder(tree* root){
+    if(root == NULL) return;
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data << " ";
+}
+
 int main() {
 	tree* root = new tree(40);
 	root->left = new tree(30);
@@ -57,4 +78,14 @@ int main() {
 	cout << "Total Node : " << TN(root) << endl;
 	
 	cout << "Height of tree : " << height(root) << endl;
+	
+	cout << "Preorder : ";
+	preorder(root);
+	
+	cout << "Inorder : ";
+	inorder(root);
+	
+	cout << "Postorder : ";
+	postorder(root)
+	
 }
