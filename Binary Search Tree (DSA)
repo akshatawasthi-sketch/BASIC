@@ -29,6 +29,16 @@ tree* insert(tree* root, int val){
     return root;
 }
 
+void preorder(tree* root){
+    if(root == NULL){
+        return;
+    }
+    
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
 void inorder(tree* root){
     if(root == NULL){
         return;
@@ -39,15 +49,16 @@ void inorder(tree* root){
     inorder(root->right);
 }
 
-void preorder(tree* root){
+void postorder(tree* root){
     if(root == NULL){
         return;
     }
     
+    postorder(root->left);
+    postorder(root->right);
     cout << root->data << " ";
-    preorder(root->left);
-    preorder(root->right);
 }
+
 int main() {
 	tree* root = NULL;
 	
@@ -63,5 +74,9 @@ int main() {
 	
 	cout<< "Inorder : " << endl;
 	inorder(root);
+	cout << endl;
+	
+	cout << "Postorder : " << endl;
+	postorder(root);
 	
 }
