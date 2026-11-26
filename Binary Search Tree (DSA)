@@ -59,6 +59,20 @@ void postorder(tree* root){
     cout << root->data << " ";
 }
 
+bool search(tree* root, int target){
+    if(root == NULL) return false;
+    
+    if(root->data == target) return true;
+    
+    else if(root->data > target){
+        return search(root->left, target);
+    }
+    
+    else{
+        return search(root->right, target);
+    }
+}
+
 int main() {
 	tree* root = NULL;
 	
@@ -78,5 +92,14 @@ int main() {
 	
 	cout << "Postorder : " << endl;
 	postorder(root);
+	cout << endl;
 	
+	int target = 88;
+	cout << "Search Target In BST : " << endl;
+	if(search(root, target)){
+	    cout << "FOUND " << endl;
+	}
+	else{
+	    cout << "NOT FOUND " << endl;
+	}
 }
